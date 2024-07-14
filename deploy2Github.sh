@@ -4,13 +4,16 @@
 pnpm run build
 
 # 切换分支
-git checkout -b githubPages
+git checkout githubPages
+
+# sleep
+sleep 3
 
 # 删除旧文件
 rm -rf ./sept/*
 
 # 复制新文件
-cp -r dist/* ./sept
+cp -r dist/* sept/
 
 # 提交
 git add .
