@@ -11,6 +11,7 @@ A personal website.
 ## style
 ### theme
 ### animation
+### icon
 
 ## page search
 
@@ -19,3 +20,5 @@ A personal website.
 ## performance
 
 ## monico editor
+
+## code scanner

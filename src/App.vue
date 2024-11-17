@@ -17,6 +17,8 @@
           <icon-font name="menu" />
         </template>
       </el-button>
+
+      <router-view />
     </main>
   </section>
 </template>
@@ -33,20 +35,26 @@ const appStateStore = useAppStateStore()
 const appContainerClasses = computed(() => [
   'app-container',
   settingsStore.menu.isActive ? 'aside-is-active' : 'aside-is-inactive',
-  appStateStore.isMobile ? 'is-mobile' : 'is-pc'
+  appStateStore.isMobile ? 'is-mobile' : 'is-pc',
+  settingsStore.menu.isCollapsed ? 'aside-is-collapsed' : 'aside-is-uncollapsed'
 ])
 </script>
 
 <style lang="less">
 // aside的宽度变量
 @aside-width: 250px;
+@aside-collapsed-width: 84px;
 
 .app-container {
   position: relative;
   height: 100%;
+  overflow: hidden;
   background-color: #fff;
 
+
+
   &.is-pc {
+
     .aside-layout {
       position: absolute;
       top: 0;
@@ -55,6 +63,7 @@ const appContainerClasses = computed(() => [
       height: 100%;
       transition: transform 0.3s ease-in-out;
     }
+
 
     main {
       margin-left: @aside-width;
@@ -72,6 +81,22 @@ const appContainerClasses = computed(() => [
 
       main {
         margin-left: 0;
+      }
+    }
+
+    &.aside-is-collapsed {
+      .aside-layout {
+        width: @aside-collapsed-width;
+      }
+
+      main {
+        margin-left: @aside-collapsed-width;
+      }
+
+      &.aside-is-inactive {
+        main {
+          margin-left: 0;
+        }
       }
     }
   }
